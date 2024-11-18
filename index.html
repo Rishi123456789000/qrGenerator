@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZdgmnJG9CTordxXG6Z7oC7kpM_k3eIRy9NHPjkLW2Rtb8De-sHzHv-ZC-DyqWsoKy6RY&usqp=CAU" alt="QR Logo" class="logo">
+        <h1 class="title">QR Code Generator</h1>
+        <p>Enter Your Text or URL</p>
+        <input type="text" placeholder="Text to URL" id="qrtext">
+        <div id="imgBox">
+            <img src="" id="qrimg">
+        </div>
+        <button onclick="generateQr()">Generate QR Code</button>
+    </div>
+
+    <script>
+        let imgBox = document.getElementById("imgBox");
+        let qrimg = document.getElementById("qrimg");
+        let qrtext = document.getElementById("qrtext");
+
+        function generateQr() {
+            if (qrtext.value.trim().length > 0) {
+                qrimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrtext.value;
+                imgBox.classList.add("show-img");
+                imgBox.classList.remove("shake"); 
+            } else {
+                imgBox.classList.remove("show-img");
+                imgBox.classList.add("shake"); 
+            }
+        }
+    </script>
+</body>
+</html>
